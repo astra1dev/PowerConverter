@@ -9,3 +9,6 @@ Then you need to install the requirements. Open Command Prompt, type `python -m 
 
 __Windows:__ Open Explorer, navigate to the PowerConverter directory, then double-click `console.py`. Now you can convert your files! \
 __Linux:__ Use the console to navigate to the PowerConverter directory, then type `python3 console.py`, hit enter, done.
+
+## Additional Info
+There is also an UI version of this, but it's still WIP and not available to the public yet.
