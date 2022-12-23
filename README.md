@@ -11,4 +11,5 @@ __Windows:__ Open Explorer, navigate to the PowerConverter directory, then doubl
 __Linux:__ Use the console to navigate to the PowerConverter directory, then type `python3 console.py`, hit enter, done.
 
 ## Additional Info
+This is still a very early version, so expect more stuff to be added in the future. \
 There is also an UI version of this, but it's still WIP and not available to the public yet.
