@@ -84,7 +84,6 @@ def mov2mp4(file):
         print("The File was not found! Make sure you put in the path correctly.")
     except OSError:
         print("The file could not be converted!")
-# dieses skript kann auch .avi und .flv dateien konvertieren, einfach die dateiendungen austauschen
 
 
 def mp42mov(file):
@@ -97,7 +96,6 @@ def mp42mov(file):
         print("The File was not found! Make sure you put in the path correctly.")
     except OSError:
         print("The file could not be converted!")
-# dieses skript kann auch .avi und .flv dateien konvertieren, einfach die dateiendungen austauschen
 
 
 def wav2mp3(file):
