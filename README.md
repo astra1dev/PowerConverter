@@ -2,13 +2,20 @@
 just a converter for various file types (image, audio, video, yt)
 
 ## How to run
-You need Python installed on your computer. If you're using Linux, Python is already installed.\
+### Linux 
+Python should already be installed on your computer. 
+
+Use the console to navigate to the PowerConverter directory, then type `python3 pip install -r requirements.txt` and hit enter. \
+Then type `python3 console.py` and hit enter. Now you can convert your files!
+
+### Windows
+You need Python installed on your computer. \
 Download the latest version here: https://www.python.org/downloads/ 
 
-Then you need to install the requirements. Open Command Prompt, navigate to the PowerConverter directory, type `python -m pip install requirements.txt` and hit enter, done. 
+Then open Command Prompt, navigate to the PowerConverter directory, type `python -m pip install -r requirements.txt` and hit enter. 
 
-__Windows:__ Open Explorer, navigate to the PowerConverter directory, then double-click `console.py`. Now you can convert your files! \
-__Linux:__ Use the console to navigate to the PowerConverter directory, then type `python3 console.py`, hit enter, done.
+Finally, open Explorer, navigate to the PowerConverter directory, then double-click `console.py`. Now you can convert your files! 
+
 
 ## Additional Info
 This is still a very early version, so expect more stuff to be added in the future. \
