@@ -13,7 +13,7 @@ Then type `python3 console.py` and hit enter. Now you can convert your files!
 
 ### Windows
 You need Python installed on your computer. \
-Download the latest version here: https://www.python.org/downloads/ 
+Download the latest version [here](https://www.python.org/downloads/) 
 
 Then open Command Prompt, navigate to the PowerConverter directory, type `python -m pip install -r requirements.txt` and hit enter. 
 
