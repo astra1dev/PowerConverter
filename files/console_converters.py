@@ -4,6 +4,7 @@ import subprocess
 from pydub import AudioSegment
 from pytube import YouTube
 
+# Image Converters
 
 def png2jpg(file):
     try:
@@ -52,6 +53,30 @@ def ico2png(file):
         print("The file could not be converted!")
 
 
+def jpg2ico(file):
+    try:
+        image = Image.open(file)
+        ico_file = file[:-4] + ".png"
+        image.save(ico_file, format="ICO")
+    except FileNotFoundError:
+        print("The File was not found! Make sure you put in the path correctly.")
+    except OSError:
+        print("The file could not be converted!")
+
+
+def ico2jpg(file):
+    try:
+        image = Image.open(file)
+        rgb_image = image.convert('RGB')
+        jpg_file = file[:-4] + ".jpg"
+        rgb_image.save(jpg_file, format="JPG")
+        print("File converted: " + file)
+    except FileNotFoundError:
+        print("The File was not found! Make sure you put in the path correctly.")
+    except OSError:
+        print("The file could not be converted!")
+
+
 def png2webp(file):
     try:
         image = Image.open(file)
@@ -73,6 +98,53 @@ def webp2png(file):
     except OSError:
         print("The file could not be converted!")
 
+
+def jpg2webp(file):
+    try:
+        image = Image.open(file)
+        webp_file = file[:-4] + ".webp"
+        image.save(webp_file, format="WEBP")
+    except FileNotFoundError:
+        print("The File was not found! Make sure you put in the path correctly.")
+    except OSError:
+        print("The file could not be converted!")
+
+
+def webp2jpg(file):
+    try:
+        image = Image.open(file)
+        rgb_image = image.convert('RGB')
+        jpg_file = file[:-4] + ".jpg"
+        rgb_image.save(jpg_file, format="JPG")
+        print("File converted: " + file)
+    except FileNotFoundError:
+        print("The File was not found! Make sure you put in the path correctly.")
+    except OSError:
+        print("The file could not be converted!")
+
+
+def ico2webp(file):
+    try:
+        image = Image.open(file)
+        webp_file = file[:-4] + ".webp"
+        image.save(webp_file, format="WEBP")
+    except FileNotFoundError:
+        print("The File was not found! Make sure you put in the path correctly.")
+    except OSError:
+        print("The file could not be converted!")
+
+
+def webp2ico(file):
+    try:
+        image = Image.open(file)
+        ico_file = file[:-5] + ".png"
+        image.save(ico_file, format="ICO")
+    except FileNotFoundError:
+        print("The File was not found! Make sure you put in the path correctly.")
+    except OSError:
+        print("The file could not be converted!")
+
+# Video Converters
 
 def mov2mp4(file):
     try:
@@ -97,6 +169,47 @@ def mp42mov(file):
     except OSError:
         print("The file could not be converted!")
 
+
+def mov2avi(file):
+    pass
+
+
+def avi2mov(file):
+    pass
+
+
+def mp42avi(file):
+    pass
+
+
+def avi2mp4(file):
+    pass
+
+
+def mov2flv(file):
+    pass
+
+
+def flv2mov(file):
+    pass
+
+
+def mp42flv(file):
+    pass
+
+
+def flv2mp4(file):
+    pass
+
+
+def avi2flv(file):
+    pass
+
+
+def flv2avi(file):
+    pass
+
+# Audio Converters
 
 def wav2mp3(file):
     try:
