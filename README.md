@@ -3,7 +3,7 @@ just a converter for various file types (image, audio, video, yt)
 
 ## How to run
 
-Firstly, download the latest release of PowerConverter [here](https://github.com/kkb3st/PowerConverter/releases/) or clone the entire repository.
+First, download the latest release of PowerConverter [here](https://github.com/kkb3st/PowerConverter/releases/) or clone the entire repository.
 
 ### Linux 
 Python should already be installed on your computer. 
