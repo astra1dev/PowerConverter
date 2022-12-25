@@ -22,4 +22,4 @@ Finally, open Explorer, navigate to the PowerConverter directory, then double-cl
 
 ## Additional Info
 This is still a very early version, so expect more stuff to be added in the future. \
-There is also an UI version of this, but it's still WIP and not available to the public yet.
+There is also an UI version, but it's still WIP and not available to the public yet.
