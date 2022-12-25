@@ -16,3 +16,7 @@ V.1.3.1:
 V.1.3.2: (First version publicly available)
 - added full support for .ico files
 - added full support for .webp files
+
+V.1.3.3: 
+- added missing converters (e.g. webp2ico)
+- improved banner + description
