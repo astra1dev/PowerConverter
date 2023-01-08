@@ -20,7 +20,9 @@ png2ico     jpg2ico     ico2jpg     webp2ico
 png2webp    jpg2webp    ico2webp    webp2jpg
 ------------------------------------------------
 VIDEO: (ffmpeg required)
-mp42mov     mov2mp4
+mp42mov     mov2mp4     avi2mp4     flv2mp4
+mp42avi     mov2avi     avi2mov     flv2mov
+mp42flv     mov2flv     avi2flv     flv2avi
 ------------------------------------------------
 AUDIO: (ffmpeg required)
 mp32wav     wav2mp3
@@ -87,13 +89,55 @@ elif INPUT_Converter == "webp2jpg":
 
 # Video
 
+elif INPUT_Converter == "mp42mov":
+    INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
+    mp42mov(INPUT_File)
+
+elif INPUT_Converter == "mp42avi":
+    INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
+    mp42avi(INPUT_File)
+
+elif INPUT_Converter == "mp42flv":
+    INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
+    mp42flv(INPUT_File)
+
 elif INPUT_Converter == "mov2mp4":
     INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
     mov2mp4(INPUT_File)
 
-elif INPUT_Converter == "mp42mov":
+elif INPUT_Converter == "mov2avi":
     INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
-    mp42mov(INPUT_File)
+    mov2avi(INPUT_File)
+
+elif INPUT_Converter == "mov2flv":
+    INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
+    mov2flv(INPUT_File)
+
+elif INPUT_Converter == "avi2mp4":
+    INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
+    avi2mp4(INPUT_File)
+
+elif INPUT_Converter == "avi2mov":
+    INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
+    avi2mov(INPUT_File)
+
+elif INPUT_Converter == "avi2flv":
+    INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
+    avi2flv(INPUT_File)
+
+elif INPUT_Converter == "flv2mp4":
+    INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
+    flv2mp4(INPUT_File)
+
+elif INPUT_Converter == "flv2mov":
+    INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
+    flv2mov(INPUT_File)
+
+elif INPUT_Converter == "flv2avi":
+    INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
+    flv2avi(INPUT_File)
+
+
 
 # Audio
 
