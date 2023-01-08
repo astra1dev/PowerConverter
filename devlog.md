@@ -20,3 +20,6 @@ V.1.3.2: (First version publicly available)
 V.1.3.3: 
 - added missing converters (e.g. webp2ico)
 - improved banner + description
+
+V.1.3.4:
+- added full support for avi & flv files
