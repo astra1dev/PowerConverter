@@ -171,43 +171,122 @@ def mp42mov(file):
 
 
 def mov2avi(file):
-    pass
-
+    try:
+        avi_file = file[:-4] + ".avi"
+        avi_file = os.path.join(avi_file)
+        subprocess.call(['ffmpeg', '-i', file, avi_file])
+        print("File converted: " + file)
+    except FileNotFoundError:
+        print("The File was not found! Make sure you put in the path correctly.")
+    except OSError:
+        print("The file could not be converted!")
 
 def avi2mov(file):
-    pass
+    try:
+        mov_file = file[:-4] + ".avi"
+        mov_file = os.path.join(mov_file)
+        subprocess.call(['ffmpeg', '-i', file, mov_file])
+        print("File converted: " + file)
+    except FileNotFoundError:
+        print("The File was not found! Make sure you put in the path correctly.")
+    except OSError:
+        print("The file could not be converted!")
 
 
 def mp42avi(file):
-    pass
+    try:
+        avi_file = file[:-4] + ".avi"
+        avi_file = os.path.join(avi_file)
+        subprocess.call(['ffmpeg', '-i', file, avi_file])
+        print("File converted: " + file)
+    except FileNotFoundError:
+        print("The File was not found! Make sure you put in the path correctly.")
+    except OSError:
+        print("The file could not be converted!")
 
 
 def avi2mp4(file):
-    pass
+    try:
+        mp4_file = file[:-4] + ".mp4"
+        mp4_file = os.path.join(mp4_file)
+        subprocess.call(['ffmpeg', '-i', file, mp4_file])
+        print("File converted: " + file)
+    except FileNotFoundError:
+        print("The File was not found! Make sure you put in the path correctly.")
+    except OSError:
+        print("The file could not be converted!")
 
 
 def mov2flv(file):
-    pass
+    try:
+        flv_file = file[:-4] + ".avi"
+        flv_file = os.path.join(flv_file)
+        subprocess.call(['ffmpeg', '-i', file, flv_file])
+        print("File converted: " + file)
+    except FileNotFoundError:
+        print("The File was not found! Make sure you put in the path correctly.")
+    except OSError:
+        print("The file could not be converted!")
 
 
 def flv2mov(file):
-    pass
+    try:
+        mov_file = file[:-4] + ".avi"
+        mov_file = os.path.join(mov_file)
+        subprocess.call(['ffmpeg', '-i', file, mov_file])
+        print("File converted: " + file)
+    except FileNotFoundError:
+        print("The File was not found! Make sure you put in the path correctly.")
+    except OSError:
+        print("The file could not be converted!")
 
 
 def mp42flv(file):
-    pass
+    try:
+        flv_file = file[:-4] + ".avi"
+        flv_file = os.path.join(flv_file)
+        subprocess.call(['ffmpeg', '-i', file, flv_file])
+        print("File converted: " + file)
+    except FileNotFoundError:
+        print("The File was not found! Make sure you put in the path correctly.")
+    except OSError:
+        print("The file could not be converted!")
 
 
 def flv2mp4(file):
-    pass
+    try:
+        mp4_file = file[:-4] + ".mp4"
+        mp4_file = os.path.join(mp4_file)
+        subprocess.call(['ffmpeg', '-i', file, mp4_file])
+        print("File converted: " + file)
+    except FileNotFoundError:
+        print("The File was not found! Make sure you put in the path correctly.")
+    except OSError:
+        print("The file could not be converted!")
 
 
 def avi2flv(file):
-    pass
+    try:
+        flv_file = file[:-4] + ".avi"
+        flv_file = os.path.join(flv_file)
+        subprocess.call(['ffmpeg', '-i', file, flv_file])
+        print("File converted: " + file)
+    except FileNotFoundError:
+        print("The File was not found! Make sure you put in the path correctly.")
+    except OSError:
+        print("The file could not be converted!")
 
 
 def flv2avi(file):
-    pass
+    try:
+        avi_file = file[:-4] + ".avi"
+        avi_file = os.path.join(avi_file)
+        subprocess.call(['ffmpeg', '-i', file, avi_file])
+        print("File converted: " + file)
+    except FileNotFoundError:
+        print("The File was not found! Make sure you put in the path correctly.")
+    except OSError:
+        print("The file could not be converted!")
 
 # Audio Converters
 
