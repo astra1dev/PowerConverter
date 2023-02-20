@@ -1,3 +1,5 @@
 pytube
 Pillow
 pydub
+requests
+colorama
