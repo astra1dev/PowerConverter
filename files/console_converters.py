@@ -2,7 +2,25 @@ from PIL import Image
 import os
 import subprocess
 from pydub import AudioSegment
-from pytube import YouTube
+from pytube import YouTube, exceptions
+import requests
+from colorama import Fore, Style #, Back
+from time import sleep
+
+
+# Error Handlers
+
+def FNFError():
+    print(Fore.RED + "[ERROR] The File was not found! Make sure you put in the path correctly." + Style.RESET_ALL)
+    sleep(5)
+
+def ConvError():
+    print(Fore.RED + "[ERROR] The file could not be converted!" + Style.RESET_ALL)
+    sleep(5)
+
+def Success():
+    print(Fore.GREEN + "[SUCCESS] File successfully converted!" + Style.RESET_ALL)
+    sleep(5)
 
 # Image Converters
 
@@ -11,12 +29,12 @@ def png2jpg(file):
         image = Image.open(file)
         rgb_image = image.convert('RGB')
         jpg_file = file[:-4] + ".jpg"
-        rgb_image.save(jpg_file, format="JPG")
-        print("File converted: " + file)
+        rgb_image.save(jpg_file)
+        Success()
     except FileNotFoundError:
-        print("The File was not found! Make sure you put in the path correctly.")
+        FNFError()
     except OSError:
-        print("The file could not be converted!")
+        ConvError()
 
 
 def jpg2png(file):
@@ -24,22 +42,22 @@ def jpg2png(file):
         image = Image.open(file)
         png_file = file[:-4] + ".png"
         image.save(png_file, format="PNG")
-        print("File converted: " + file)
+        Success()
     except FileNotFoundError:
-        print("The File was not found! Make sure you put in the path correctly.")
+        FNFError()
     except OSError:
-        print("The file could not be converted!")
-
+        ConvError()
 
 def png2ico(file):
     try:
         image = Image.open(file)
         ico_file = file[:-4] + ".ico"
         image.save(ico_file, format="ICO")
+        Success()
     except FileNotFoundError:
-        print("The File was not found! Make sure you put in the path correctly.")
+        FNFError()
     except OSError:
-        print("The file could not be converted!")
+        print(Fore.RED + "[ERROR] The file could not be converted!" + Style.RESET_ALL)
 
 
 def ico2png(file):
@@ -47,10 +65,11 @@ def ico2png(file):
         image = Image.open(file)
         png_file = file[:-4] + ".png"
         image.save(png_file, format="PNG")
+        Success()
     except FileNotFoundError:
-        print("The File was not found! Make sure you put in the path correctly.")
+        FNFError()
     except OSError:
-        print("The file could not be converted!")
+        ConvError()
 
 
 def jpg2ico(file):
@@ -58,10 +77,11 @@ def jpg2ico(file):
         image = Image.open(file)
         ico_file = file[:-4] + ".png"
         image.save(ico_file, format="ICO")
+        Success()
     except FileNotFoundError:
-        print("The File was not found! Make sure you put in the path correctly.")
+        FNFError()
     except OSError:
-        print("The file could not be converted!")
+        ConvError()
 
 
 def ico2jpg(file):
@@ -70,11 +90,11 @@ def ico2jpg(file):
         rgb_image = image.convert('RGB')
         jpg_file = file[:-4] + ".jpg"
         rgb_image.save(jpg_file, format="JPG")
-        print("File converted: " + file)
+        Success()
     except FileNotFoundError:
-        print("The File was not found! Make sure you put in the path correctly.")
+        FNFError()
     except OSError:
-        print("The file could not be converted!")
+        ConvError()
 
 
 def png2webp(file):
@@ -82,10 +102,11 @@ def png2webp(file):
         image = Image.open(file)
         webp_file = file[:-4] + ".webp"
         image.save(webp_file, format="WEBP")
+        Success()
     except FileNotFoundError:
-        print("The File was not found! Make sure you put in the path correctly.")
+        FNFError()
     except OSError:
-        print("The file could not be converted!")
+        ConvError()
 
 
 def webp2png(file):
@@ -93,10 +114,11 @@ def webp2png(file):
         image = Image.open(file)
         png_file = file[:-5] + ".png"
         image.save(png_file, format="PNG")
+        Success()
     except FileNotFoundError:
-        print("The File was not found! Make sure you put in the path correctly.")
+        FNFError()
     except OSError:
-        print("The file could not be converted!")
+        ConvError()
 
 
 def jpg2webp(file):
@@ -104,10 +126,11 @@ def jpg2webp(file):
         image = Image.open(file)
         webp_file = file[:-4] + ".webp"
         image.save(webp_file, format="WEBP")
+        Success()
     except FileNotFoundError:
-        print("The File was not found! Make sure you put in the path correctly.")
+        FNFError()
     except OSError:
-        print("The file could not be converted!")
+        ConvError()
 
 
 def webp2jpg(file):
@@ -116,11 +139,11 @@ def webp2jpg(file):
         rgb_image = image.convert('RGB')
         jpg_file = file[:-4] + ".jpg"
         rgb_image.save(jpg_file, format="JPG")
-        print("File converted: " + file)
+        Success()
     except FileNotFoundError:
-        print("The File was not found! Make sure you put in the path correctly.")
+        FNFError()
     except OSError:
-        print("The file could not be converted!")
+        ConvError()
 
 
 def ico2webp(file):
@@ -128,10 +151,11 @@ def ico2webp(file):
         image = Image.open(file)
         webp_file = file[:-4] + ".webp"
         image.save(webp_file, format="WEBP")
+        Success()
     except FileNotFoundError:
-        print("The File was not found! Make sure you put in the path correctly.")
+        FNFError()
     except OSError:
-        print("The file could not be converted!")
+        ConvError()
 
 
 def webp2ico(file):
@@ -139,10 +163,11 @@ def webp2ico(file):
         image = Image.open(file)
         ico_file = file[:-5] + ".png"
         image.save(ico_file, format="ICO")
+        Success()
     except FileNotFoundError:
-        print("The File was not found! Make sure you put in the path correctly.")
+        FNFError()
     except OSError:
-        print("The file could not be converted!")
+        ConvError()
 
 # Video Converters
 
@@ -151,11 +176,11 @@ def mov2mp4(file):
         mp4_file = file[:-4] + ".mp4"
         mp4_file = os.path.join(mp4_file)
         subprocess.call(['ffmpeg', '-i', file, mp4_file])
-        print("File converted: " + file)
+        Success()
     except FileNotFoundError:
-        print("The File was not found! Make sure you put in the path correctly.")
+        FNFError()
     except OSError:
-        print("The file could not be converted!")
+        ConvError()
 
 
 def mp42mov(file):
@@ -163,11 +188,11 @@ def mp42mov(file):
         mov_file = file[:-4] + ".mov"
         mov_file = os.path.join(mov_file)
         subprocess.call(['ffmpeg', '-i', file, mov_file])
-        print("File converted: " + file)
+        Success()
     except FileNotFoundError:
-        print("The File was not found! Make sure you put in the path correctly.")
+        FNFError()
     except OSError:
-        print("The file could not be converted!")
+        ConvError()
 
 
 def mov2avi(file):
@@ -175,22 +200,22 @@ def mov2avi(file):
         avi_file = file[:-4] + ".avi"
         avi_file = os.path.join(avi_file)
         subprocess.call(['ffmpeg', '-i', file, avi_file])
-        print("File converted: " + file)
+        Success()
     except FileNotFoundError:
-        print("The File was not found! Make sure you put in the path correctly.")
+        FNFError()
     except OSError:
-        print("The file could not be converted!")
+        ConvError()
 
 def avi2mov(file):
     try:
         mov_file = file[:-4] + ".avi"
         mov_file = os.path.join(mov_file)
         subprocess.call(['ffmpeg', '-i', file, mov_file])
-        print("File converted: " + file)
+        Success()
     except FileNotFoundError:
-        print("The File was not found! Make sure you put in the path correctly.")
+        FNFError()
     except OSError:
-        print("The file could not be converted!")
+        ConvError()
 
 
 def mp42avi(file):
@@ -198,11 +223,11 @@ def mp42avi(file):
         avi_file = file[:-4] + ".avi"
         avi_file = os.path.join(avi_file)
         subprocess.call(['ffmpeg', '-i', file, avi_file])
-        print("File converted: " + file)
+        Success()
     except FileNotFoundError:
-        print("The File was not found! Make sure you put in the path correctly.")
+        FNFError()
     except OSError:
-        print("The file could not be converted!")
+        ConvError()
 
 
 def avi2mp4(file):
@@ -210,11 +235,11 @@ def avi2mp4(file):
         mp4_file = file[:-4] + ".mp4"
         mp4_file = os.path.join(mp4_file)
         subprocess.call(['ffmpeg', '-i', file, mp4_file])
-        print("File converted: " + file)
+        Success()
     except FileNotFoundError:
-        print("The File was not found! Make sure you put in the path correctly.")
+        FNFError()
     except OSError:
-        print("The file could not be converted!")
+        ConvError()
 
 
 def mov2flv(file):
@@ -222,11 +247,11 @@ def mov2flv(file):
         flv_file = file[:-4] + ".avi"
         flv_file = os.path.join(flv_file)
         subprocess.call(['ffmpeg', '-i', file, flv_file])
-        print("File converted: " + file)
+        Success()
     except FileNotFoundError:
-        print("The File was not found! Make sure you put in the path correctly.")
+        FNFError()
     except OSError:
-        print("The file could not be converted!")
+        ConvError()
 
 
 def flv2mov(file):
@@ -234,11 +259,11 @@ def flv2mov(file):
         mov_file = file[:-4] + ".avi"
         mov_file = os.path.join(mov_file)
         subprocess.call(['ffmpeg', '-i', file, mov_file])
-        print("File converted: " + file)
+        Success()
     except FileNotFoundError:
-        print("The File was not found! Make sure you put in the path correctly.")
+        FNFError()
     except OSError:
-        print("The file could not be converted!")
+        ConvError()
 
 
 def mp42flv(file):
@@ -246,11 +271,11 @@ def mp42flv(file):
         flv_file = file[:-4] + ".avi"
         flv_file = os.path.join(flv_file)
         subprocess.call(['ffmpeg', '-i', file, flv_file])
-        print("File converted: " + file)
+        Success()
     except FileNotFoundError:
-        print("The File was not found! Make sure you put in the path correctly.")
+        FNFError()
     except OSError:
-        print("The file could not be converted!")
+        ConvError()
 
 
 def flv2mp4(file):
@@ -258,11 +283,11 @@ def flv2mp4(file):
         mp4_file = file[:-4] + ".mp4"
         mp4_file = os.path.join(mp4_file)
         subprocess.call(['ffmpeg', '-i', file, mp4_file])
-        print("File converted: " + file)
+        Success()
     except FileNotFoundError:
-        print("The File was not found! Make sure you put in the path correctly.")
+        FNFError()
     except OSError:
-        print("The file could not be converted!")
+        ConvError()
 
 
 def avi2flv(file):
@@ -270,11 +295,11 @@ def avi2flv(file):
         flv_file = file[:-4] + ".avi"
         flv_file = os.path.join(flv_file)
         subprocess.call(['ffmpeg', '-i', file, flv_file])
-        print("File converted: " + file)
+        Success()
     except FileNotFoundError:
-        print("The File was not found! Make sure you put in the path correctly.")
+        FNFError()
     except OSError:
-        print("The file could not be converted!")
+        ConvError()
 
 
 def flv2avi(file):
@@ -282,11 +307,11 @@ def flv2avi(file):
         avi_file = file[:-4] + ".avi"
         avi_file = os.path.join(avi_file)
         subprocess.call(['ffmpeg', '-i', file, avi_file])
-        print("File converted: " + file)
+        Success()
     except FileNotFoundError:
-        print("The File was not found! Make sure you put in the path correctly.")
+        FNFError()
     except OSError:
-        print("The file could not be converted!")
+        ConvError()
 
 # Audio Converters
 
@@ -295,11 +320,11 @@ def wav2mp3(file):
         sound = AudioSegment.from_wav(file)
         file = file[:-4] + ".mp3"
         sound.export(file, format="mp3")
-        print("File converted: " + file)
+        Success()
     except FileNotFoundError:
-        print("The File was not found! Make sure you put in the path correctly.")
+        FNFError()
     except OSError:
-        print("The file could not be converted!")
+        ConvError()
 
 
 def mp32wav(file):
@@ -307,21 +332,82 @@ def mp32wav(file):
         sound = AudioSegment.from_mp3(file)
         file = file[:-4] + ".wav"
         sound.export(file, format="wav")
-        print("File converted: " + file)
+        Success()
     except FileNotFoundError:
-        print("The File was not found! Make sure you put in the path correctly.")
+        FNFError()
     except OSError:
-        print("The file could not be converted!")
+        ConvError()
 
+# YouTube Downloaders
 
 def yt2mp3(link):
-    video = YouTube(link).streams.filter(only_audio=True).first()
-    out_file = video.download()
-    new_file = out_file[:-4] + ".mp3"
-    subprocess.call(['ffmpeg', '-i', out_file, new_file])
-    os.remove(out_file)
+    try:
+        video = YouTube(link).streams.filter(only_audio=True).first()
+        out_file = video.download()
+        new_file = out_file[:-4] + ".mp3"
+        subprocess.call(['ffmpeg', '-i', out_file, new_file])
+        os.remove(out_file)
+        print(Fore.GREEN + "[SUCCESS] Audio successfully downloaded!" + Style.RESET_ALL)
+        sleep(5)
+    except exceptions.RegexMatchError:
+        print(Fore.RED + "[ERROR] The video URL you entered is not valid!" + Style.RESET_ALL)
+        sleep(5)
+    except exceptions.LiveStreamError:
+        print(Fore.RED + "[ERROR] You entered a livestream link, not a video link!" + Style.RESET_ALL)
+        sleep(5)
+    except exceptions.VideoPrivate:
+        print(Fore.RED + "[ERROR] The video you entered is private!" + Style.RESET_ALL)
+        sleep(5)
+    except exceptions.VideoRegionBlocked:
+        print(Fore.RED + "[ERROR] The video you entered is blocked in your region!" + Style.RESET_ALL)
+        sleep(5)
+    except exceptions.AgeRestrictedError:
+        print(Fore.RED + "[ERROR] The video you entered is age restricted!" + Style.RESET_ALL)
+        sleep(5)
 
 
 def yt2mp4(link):
-    video = YouTube(link).streams.filter(file_extension="mp4").first()
-    video.download()
+    try:
+        video = YouTube(link).streams.filter(file_extension="mp4").first()
+        video.download()
+        print(Fore.GREEN + "[SUCCESS] Video successfully downloaded!" + Style.RESET_ALL)
+        sleep(5)
+    except exceptions.RegexMatchError:
+        print(Fore.RED + "[ERROR] The video URL you entered is not valid!" + Style.RESET_ALL)
+        sleep(5)
+    except exceptions.LiveStreamError:
+        print(Fore.RED + "[ERROR] You entered a livestream link, not a video link!" + Style.RESET_ALL)
+        sleep(5)
+    except exceptions.VideoPrivate:
+        print(Fore.RED + "[ERROR] The video you entered is private!" + Style.RESET_ALL)
+        sleep(5)
+    except exceptions.VideoRegionBlocked:
+        print(Fore.RED + "[ERROR] The video you entered is blocked in your region!" + Style.RESET_ALL)
+        sleep(5)
+    except exceptions.AgeRestrictedError:
+        print(Fore.RED + "[ERROR] The video you entered is age restricted!" + Style.RESET_ALL)
+        sleep(5)
+
+def ytthumb(link):
+    try:
+        thumb = YouTube(link).thumbnail_url
+        r = requests.get(thumb).content
+        with open('thumbnail.png', 'wb') as f:
+            f.write(r)
+        print(Fore.GREEN + "[SUCCESS] File successfully converted!" + Style.RESET_ALL)
+        sleep(5)
+    except exceptions.RegexMatchError:
+        print(Fore.RED + "[ERROR] The video URL you entered is not valid!" + Style.RESET_ALL)
+        sleep(5)
+    except exceptions.LiveStreamError:
+        print(Fore.RED + "[ERROR] You entered a livestream link, not a video link!" + Style.RESET_ALL)
+        sleep(5)
+    except exceptions.VideoPrivate:
+        print(Fore.RED + "[ERROR] The video you entered is private!" + Style.RESET_ALL)
+        sleep(5)
+    except exceptions.VideoRegionBlocked:
+        print(Fore.RED + "[ERROR] The video you entered is blocked in your region!" + Style.RESET_ALL)
+        sleep(5)
+    except exceptions.AgeRestrictedError:
+        print(Fore.RED + "[ERROR] The video you entered is age restricted!" + Style.RESET_ALL)
+        sleep(5)
