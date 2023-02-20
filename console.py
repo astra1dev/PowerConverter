@@ -2,15 +2,20 @@
 # this is the console version of PowerConverter
 
 from files.console_converters import *
+from colorama import Fore, Style #, Back
+from time import sleep
 
-console_banner = r"""                                                         
-  _____                        _____                          _             
- |  __ \                      / ____|                        | |            
- | |__) |____      _____ _ __| |     ___  _ ____   _____ _ __| |_ ___ _ __  
- |  ___/ _ \ \ /\ / / _ \ '__| |    / _ \| '_ \ \ / / _ \ '__| __/ _ \ '__| 
- | |  | (_) \ V  V /  __/ |  | |___| (_) | | | \ V /  __/ |  | ||  __/ |    
- |_|   \___/ \_/\_/ \___|_|   \_____\___/|_| |_|\_/ \___|_|   \__\___|_|    
-"""
+console_banner = Fore.GREEN + r"""                                                         
+ _____                        _____                          _             
+|  __ \                      / ____|                        | |            
+| |__) |____      _____ _ __| |     ___  _ ____   _____ _ __| |_ ___ _ __  
+|  ___/ _ \ \ /\ / / _ \ '__| |    / _ \| '_ \ \ / / _ \ '__| __/ _ \ '__| 
+| |  | (_) \ V  V /  __/ |  | |___| (_) | | | \ V /  __/ |  | ||  __/ |    
+|_|   \___/ \_/\_/ \___|_|   \_____\___/|_| |_|\_/ \___|_|   \__\___|_|    
+""" + Style.RESET_ALL
+
+creator_banner = Fore.RED + "\nV.1.3.4                             created by kk~best, github.com/kkb3st\n" + Style.RESET_ALL
+
 
 converters = """
 ------------------------------------------------
@@ -32,7 +37,7 @@ yt2mp3      yt2mp4
 ------------------------------------------------
 """
 
-print(console_banner + converters)
+print(console_banner + creator_banner + converters)
 print("\nPlease enter a converter you want to use:")
 INPUT_Converter = input(">").lower()
 
@@ -138,7 +143,6 @@ elif INPUT_Converter == "flv2avi":
     flv2avi(INPUT_File)
 
 
-
 # Audio
 
 elif INPUT_Converter == "wav2mp3":
@@ -158,3 +162,11 @@ elif INPUT_Converter == "yt2mp3":
 elif INPUT_Converter == "yt2mp4":
     INPUT_Link = input("Please provide a YouTube-Video Link you want to download: ")
     yt2mp4(INPUT_Link)
+
+elif INPUT_Converter == "ytthumb":
+    INPUT_Link = input("Please provide a YouTube-Video Link you want to get the thumbnail from: ")
+    ytthumb(INPUT_Link)
+
+else:
+    print(Fore.RED + "[ERROR] That's not a valid converter!" + Style.RESET_ALL)
+    sleep(5)
