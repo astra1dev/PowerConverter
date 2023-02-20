@@ -23,3 +23,8 @@ V.1.3.3:
 
 V.1.3.4:
 - added full support for avi & flv files
+
+V.1.4:
+- added coloured font
+- added error catchers for all converters
+- added tags like SUCCESS and ERROR
