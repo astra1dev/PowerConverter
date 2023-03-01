@@ -8,7 +8,7 @@ First, download the latest release of PowerConverter [here](https://github.com/k
 ### Linux 
 Python should already be installed on your computer. 
 
-Use the console to navigate to the PowerConverter directory, then type `python3 pip install -r requirements.txt` and hit enter. \
+Use the console to navigate to the PowerConverter directory, then type `pip install -r requirements.txt` and hit enter. \
 Then type `python3 console.py` and hit enter. Now you can convert your files!
 
 ### Windows
