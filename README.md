@@ -1,9 +1,17 @@
-[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-[![license](https://img.shields.io/badge/license-GPL-brightgreen.svg)](https://opensource.org/licenses/GPL-3.0/)
-[![version](https://img.shields.io/badge/version-1.5.3-blue.svg)](https://github.com/kk-dev7/PowerConverter)
+<p align="center">
+  <img src="./logo.png">
+</p>
 
-# PowerConverter
-just a converter for various file types (image, audio, video, yt)
+<p align="center">
+  <img src="https://img.shields.io/badge/Made%20with-Python-1f425f.svg">
+  <img src="https://img.shields.io/badge/license-GPL-brightgreen.svg">
+  <img src="https://img.shields.io/badge/version-1.5.3-blue.svg">
+</p>
+
+<p align="center">
+An image, audio & video converter supporting basic file types, written in python.
+
+
 
 ## How to run
 
