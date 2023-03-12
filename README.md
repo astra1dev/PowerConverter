@@ -1,3 +1,5 @@
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
+
 # PowerConverter
 just a converter for various file types (image, audio, video, yt)
 
