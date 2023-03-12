@@ -3,9 +3,9 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Made%20with-Python-1f425f.svg">
-  <img src="https://img.shields.io/badge/license-GPL-brightgreen.svg">
-  <img src="https://img.shields.io/badge/version-1.5.3-blue.svg">
+  <img src="https://img.shields.io/badge/Made%20with-Python-1f425f.svg?style=plastic&logo=appveyor">
+  <img src="https://img.shields.io/badge/license-GPL-brightgreen.svg?style=plastic&logo=appveyor">
+  <img src="https://img.shields.io/badge/version-1.5.3-blue.svg?style=plastic&logo=appveyor">
 </p>
 
 <p align="center">
