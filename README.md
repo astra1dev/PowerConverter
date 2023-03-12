@@ -5,7 +5,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Made%20with-Python-1f425f.svg?style=plastic&logo=python&color=3c7cae&labelColor=ffd841&logoColor=3c7cae">
   <img src="https://img.shields.io/badge/license-GPL-brightgreen.svg?style=plastic&logo=GNU">
-  <img src="https://img.shields.io/badge/version-1.5.3-blue.svg?style=plastic&logo=GitHub">
+  <img src="https://img.shields.io/badge/version-1.4.-blue.svg?style=plastic&logo=GitHub">
 </p>
 
 <p align="center">
