@@ -5,24 +5,24 @@ from pydub import AudioSegment
 from pytube import YouTube, exceptions
 import requests
 from colorama import Fore, Style #, Back
-from time import sleep
+# from time import sleep
 
 
 # Error Handlers
 
 def FNFError():
     print(Fore.RED + "[ERROR] The File was not found! Make sure you put in the path correctly." + Style.RESET_ALL)
-    sleep(5)
+
 
 def ConvError():
     print(Fore.RED + "[ERROR] The file could not be converted!" + Style.RESET_ALL)
-    sleep(5)
+
 
 def Success():
     print(Fore.GREEN + "[SUCCESS] File successfully converted!" + Style.RESET_ALL)
-    sleep(5)
 
 # Image Converters
+
 
 def png2jpg(file):
     try:
@@ -47,6 +47,7 @@ def jpg2png(file):
         FNFError()
     except OSError:
         ConvError()
+
 
 def png2ico(file):
     try:
@@ -75,7 +76,7 @@ def ico2png(file):
 def jpg2ico(file):
     try:
         image = Image.open(file)
-        ico_file = file[:-4] + ".png"
+        ico_file = file[:-4] + ".ico"
         image.save(ico_file, format="ICO")
         Success()
     except FileNotFoundError:
@@ -161,7 +162,7 @@ def ico2webp(file):
 def webp2ico(file):
     try:
         image = Image.open(file)
-        ico_file = file[:-5] + ".png"
+        ico_file = file[:-5] + ".ico"
         image.save(ico_file, format="ICO")
         Success()
     except FileNotFoundError:
@@ -170,6 +171,7 @@ def webp2ico(file):
         ConvError()
 
 # Video Converters
+
 
 def mov2mp4(file):
     try:
@@ -205,6 +207,7 @@ def mov2avi(file):
         FNFError()
     except OSError:
         ConvError()
+
 
 def avi2mov(file):
     try:
@@ -315,6 +318,7 @@ def flv2avi(file):
 
 # Audio Converters
 
+
 def wav2mp3(file):
     try:
         sound = AudioSegment.from_wav(file)
@@ -340,30 +344,26 @@ def mp32wav(file):
 
 # YouTube Downloaders
 
+
 def yt2mp3(link):
     try:
         video = YouTube(link).streams.filter(only_audio=True).first()
         out_file = video.download()
         new_file = out_file[:-4] + ".mp3"
-        subprocess.call(['ffmpeg', '-i', out_file, new_file])
+        subprocess.call(['ffmpeg', '-i', out_file, new_file],
+                        stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
         os.remove(out_file)
         print(Fore.GREEN + "[SUCCESS] Audio successfully downloaded!" + Style.RESET_ALL)
-        sleep(5)
     except exceptions.RegexMatchError:
         print(Fore.RED + "[ERROR] The video URL you entered is not valid!" + Style.RESET_ALL)
-        sleep(5)
     except exceptions.LiveStreamError:
         print(Fore.RED + "[ERROR] You entered a livestream link, not a video link!" + Style.RESET_ALL)
-        sleep(5)
     except exceptions.VideoPrivate:
         print(Fore.RED + "[ERROR] The video you entered is private!" + Style.RESET_ALL)
-        sleep(5)
     except exceptions.VideoRegionBlocked:
         print(Fore.RED + "[ERROR] The video you entered is blocked in your region!" + Style.RESET_ALL)
-        sleep(5)
     except exceptions.AgeRestrictedError:
         print(Fore.RED + "[ERROR] The video you entered is age restricted!" + Style.RESET_ALL)
-        sleep(5)
 
 
 def yt2mp4(link):
@@ -371,22 +371,17 @@ def yt2mp4(link):
         video = YouTube(link).streams.filter(file_extension="mp4").first()
         video.download()
         print(Fore.GREEN + "[SUCCESS] Video successfully downloaded!" + Style.RESET_ALL)
-        sleep(5)
     except exceptions.RegexMatchError:
         print(Fore.RED + "[ERROR] The video URL you entered is not valid!" + Style.RESET_ALL)
-        sleep(5)
     except exceptions.LiveStreamError:
         print(Fore.RED + "[ERROR] You entered a livestream link, not a video link!" + Style.RESET_ALL)
-        sleep(5)
     except exceptions.VideoPrivate:
         print(Fore.RED + "[ERROR] The video you entered is private!" + Style.RESET_ALL)
-        sleep(5)
     except exceptions.VideoRegionBlocked:
         print(Fore.RED + "[ERROR] The video you entered is blocked in your region!" + Style.RESET_ALL)
-        sleep(5)
     except exceptions.AgeRestrictedError:
         print(Fore.RED + "[ERROR] The video you entered is age restricted!" + Style.RESET_ALL)
-        sleep(5)
+
 
 def ytthumb(link):
     try:
@@ -395,19 +390,13 @@ def ytthumb(link):
         with open('thumbnail.png', 'wb') as f:
             f.write(r)
         print(Fore.GREEN + "[SUCCESS] File successfully converted!" + Style.RESET_ALL)
-        sleep(5)
     except exceptions.RegexMatchError:
         print(Fore.RED + "[ERROR] The video URL you entered is not valid!" + Style.RESET_ALL)
-        sleep(5)
     except exceptions.LiveStreamError:
         print(Fore.RED + "[ERROR] You entered a livestream link, not a video link!" + Style.RESET_ALL)
-        sleep(5)
     except exceptions.VideoPrivate:
         print(Fore.RED + "[ERROR] The video you entered is private!" + Style.RESET_ALL)
-        sleep(5)
     except exceptions.VideoRegionBlocked:
         print(Fore.RED + "[ERROR] The video you entered is blocked in your region!" + Style.RESET_ALL)
-        sleep(5)
     except exceptions.AgeRestrictedError:
         print(Fore.RED + "[ERROR] The video you entered is age restricted!" + Style.RESET_ALL)
-        sleep(5)
