@@ -28,3 +28,9 @@ V.1.4:
 - added coloured font
 - added error catchers for all converters
 - added tags like SUCCESS and ERROR
+
+V.1.5:
+- added yt-thumb to download thumbnails of YouTube videos
+- better converter list / menu
+- changed converter usage
+- added loop to keep program running until user ends it
