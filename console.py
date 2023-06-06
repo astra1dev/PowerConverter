@@ -1,11 +1,15 @@
 # console.py
-# this is the console version of PowerConverter
 
+# -------------------- IMPORTS -------------------- #
 from files.console_converters import *
 from colorama import Fore, Style #, Back
 # from time import sleep
+import sys
+import argparse
 
-console_banner = Fore.GREEN + r"""                                                         
+
+# -------------------- BANNERS -------------------- #
+banner_console = Fore.GREEN + r"""                                                         
  _____                        _____                          _             
 |  __ \                      / ____|                        | |            
 | |__) |____      _____ _ __| |     ___  _ ____   _____ _ __| |_ ___ _ __  
@@ -13,10 +17,8 @@ console_banner = Fore.GREEN + r"""
 | |  | (_) \ V  V /  __/ |  | |___| (_) | | | \ V /  __/ |  | ||  __/ |    
 |_|   \___/ \_/\_/ \___|_|   \_____\___/|_| |_|\_/ \___|_|   \__\___|_|    
 """ + Style.RESET_ALL
-
-creator_banner = Fore.RED + "\nV.1.5.0                                 created by kk, github.com/kk-dev7\n" + Style.RESET_ALL
-
-converters = """
+banner_version = Fore.RED + "\nV.1.5.0                                 created by kk, github.com/kk-dev7" + Style.RESET_ALL
+banner_converters = """
 Supported File Types:
 
 Image:      .png     .jpg     .ico     .webp
@@ -24,143 +26,211 @@ Video:      .mp4     .avi     .mov     .flv
 Audio:      .mp3     .wav   
 YouTube:    yt-mp3      yt-mp4      yt-thumb
 """
+banner_usage = Fore.BLUE + "\nInput Format: [FileType1]-[FileType2]  ---> example: flv-mp4" + Style.RESET_ALL
 
-usage = Fore.BLUE + "\nInput Format: [FileType1]-[FileType2]  ---> example: flv-mp4\n" + Style.RESET_ALL
-
+# -------------------- VARIABLES -------------------- #
+ask_file = "Please provide the path of the file you want to convert: "
 cont = "y"
-INPUT_CONVERTER = ""
+converters = ["png-jpg", "png-ico", "png-webp",
+              "jpg-png", "jpg-ico", "jpg-webp",
+              "ico-png", "ico-jpg", "ico-webp",
+              "webp-png", "webp-ico", "webp-jpg",
 
-print(console_banner + creator_banner + converters + usage)
+              "mp4-mov", "mp4-avi", "mp4-flv",
+              "mov-mp4", "mov-avi", "mov-flv",
+              "avi-mp4", "avi-mov", "avi-flv",
+              "flv-mp4", "flv-mov", "flv-avi",
+
+              "yt-mp4", "yt-mp3", "yt-thumb"
+              ]
+
+# -------------------- FUNCTIONS -------------------- #
+def convert(i): # "i" is the selected converter, "f" will be the file (standard mode)
+        # image
+        if i == "png-jpg":
+            f = input(ask_file)
+            png2jpg(f)
+        elif i == "png-ico":
+            f = input(ask_file)
+            png2ico(f)
+        elif i == "png-webp":
+            f = input(ask_file)
+            png2webp(f)
+        elif i == "jpg-png":
+            f = input(ask_file)
+            jpg2png(f)
+        elif i == "jpg-ico":
+            f = input(ask_file)
+            jpg2ico(f)
+        elif i == "jpg-webp":
+            f = input(ask_file)
+            jpg2webp(f)
+        elif i == "ico-png":
+            f = input(ask_file)
+            ico2png(f)
+        elif i == "ico-jpg":
+            f = input(ask_file)
+            ico2jpg(f)
+        elif i == "ico-webp":
+            f = input(ask_file)
+            ico2webp(f)
+        elif i == "webp-png":
+            f = input(ask_file)
+            webp2png(f)
+        elif i == "webp-ico":
+            f = input(ask_file)
+            webp2ico(f)
+        elif i == "webp-jpg":
+            f = input(ask_file)
+            webp2jpg(f)
+        # video
+        elif i == "mp4-mov":
+            f = input(ask_file)
+            mp42mov(f)
+        elif i == "mp4-avi":
+            f = input(ask_file)
+            mp42avi(f)
+        elif i == "mp4-flv":
+            f = input(ask_file)
+            mp42flv(f)
+        elif i == "mov-mp4":
+            f = input(ask_file)
+            mov2mp4(f)
+        elif i == "mov-avi":
+            f = input(ask_file)
+            mov2avi(f)
+        elif i == "mov-flv":
+            f = input(ask_file)
+            mov2flv(f)
+        elif i == "avi-mp4":
+            f = input(ask_file)
+            avi2mp4(f)
+        elif i == "avi-mov":
+            f = input(ask_file)
+            avi2mov(f)
+        elif i == "avi-flv":
+            f = input(ask_file)
+            avi2flv(f)
+        elif i == "flv-mp4":
+            f = input(ask_file)
+            flv2mp4(f)
+        elif i == "flv-mov":
+            f = input(ask_file)
+            flv2mov(f)
+        elif i == "flv-avi":
+            f = input(ask_file)
+            flv2avi(f)
+        # audio
+        elif i == "wav-mp3":
+            f = input(ask_file)
+            wav2mp3(f)
+        elif i == "mp3-wav":
+            f = input(ask_file)
+            mp32wav(f)
+        # YouTube Downloader
+        elif i == "yt-mp3":
+            l = input("Please provide a YouTube-Video Link you want to download: ")
+            yt2mp3(l)
+        elif i == "yt-mp4":
+            l = input("Please provide a YouTube-Video Link you want to download: ")
+            yt2mp4(l)
+        elif i == "yt-thumb":
+            l = input("Please provide a YouTube-Video Link you want to get the thumbnail from: ")
+            ytthumb(l)
+
+        else: # If the converter is not valid
+            print(Fore.RED + "[ERROR] That's not a valid converter!" + Style.RESET_ALL)
 
 
-while cont == "y":
-    print("Please enter a converter you want to use:")
-    INPUT_Converter = input(">").lower()
-    if INPUT_Converter == "png-jpg":
-        INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
-        png2jpg(INPUT_File)
+def a_convert(i, f): # "i" is the selected converter, "f" is the file (advanced mode)
+    if i == "png-jpg":
+        png2jpg(f)
+    elif i == "png-ico":
+        png2ico(f)
+    elif i == "png-webp":
+        png2webp(f)
+    elif i == "jpg-png":
+        jpg2png(f)
+    elif i == "jpg-ico":
+        jpg2ico(f)
+    elif i == "jpg-webp":
+        jpg2webp(f)
+    elif i == "ico-png":
+        ico2png(f)
+    elif i == "ico-jpg":
+        ico2jpg(f)
+    elif i == "ico-webp":
+        ico2webp(f)
+    elif i == "webp-png":
+        webp2png(f)
+    elif i == "webp-ico":
+        webp2ico(f)
+    elif i == "webp-jpg":
+        webp2jpg(f)
+    # video
+    elif i == "mp4-mov":
+        mp42mov(f)
+    elif i == "mp4-avi":
+        mp42avi(f)
+    elif i == "mp4-flv":
+        mp42flv(f)
+    elif i == "mov-mp4":
+        mov2mp4(f)
+    elif i == "mov-avi":
+        mov2avi(f)
+    elif i == "mov-flv":
+        mov2flv(f)
+    elif i == "avi-mp4":
+        avi2mp4(f)
+    elif i == "avi-mov":
+        avi2mov(f)
+    elif i == "avi-flv":
+        avi2flv(f)
+    elif i == "flv-mp4":
+        flv2mp4(f)
+    elif i == "flv-mov":
+        flv2mov(f)
+    elif i == "flv-avi":
+        flv2avi(f)
+    # audio
+    elif i == "wav-mp3":
+        wav2mp3(f)
+    elif i == "mp3-wav":
+        mp32wav(f)
+    # YouTube Downloader
+    elif i == "yt-mp3":
+        yt2mp3(f)
+    elif i == "yt-mp4":
+        yt2mp4(f)
+    elif i == "yt-thumb":
+        ytthumb(f)
 
-    elif INPUT_Converter == "png-ico":
-        INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
-        png2ico(INPUT_File)
-
-    elif INPUT_Converter == "png-webp":
-        INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
-        png2webp(INPUT_File)
-
-    elif INPUT_Converter == "jpg-png":
-        INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
-        jpg2png(INPUT_File)
-
-    elif INPUT_Converter == "jpg-ico":
-        INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
-        jpg2ico(INPUT_File)
-
-    elif INPUT_Converter == "jpg-webp":
-        INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
-        jpg2webp(INPUT_File)
-
-    elif INPUT_Converter == "ico-png":
-        INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
-        ico2png(INPUT_File)
-
-    elif INPUT_Converter == "ico-jpg":
-        INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
-        ico2jpg(INPUT_File)
-
-    elif INPUT_Converter == "ico-webp":
-        INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
-        ico2webp(INPUT_File)
-
-    elif INPUT_Converter == "webp-png":
-        INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
-        webp2png(INPUT_File)
-
-    elif INPUT_Converter == "webp-ico":
-        INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
-        webp2ico(INPUT_File)
-
-    elif INPUT_Converter == "webp-jpg":
-        INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
-        webp2jpg(INPUT_File)
-
-# Video
-
-    elif INPUT_Converter == "mp4-mov":
-        INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
-        mp42mov(INPUT_File)
-
-    elif INPUT_Converter == "mp4-avi":
-        INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
-        mp42avi(INPUT_File)
-
-    elif INPUT_Converter == "mp4-flv":
-        INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
-        mp42flv(INPUT_File)
-
-    elif INPUT_Converter == "mov-mp4":
-        INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
-        mov2mp4(INPUT_File)
-
-    elif INPUT_Converter == "mov-avi":
-        INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
-        mov2avi(INPUT_File)
-
-    elif INPUT_Converter == "mov-flv":
-        INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
-        mov2flv(INPUT_File)
-
-    elif INPUT_Converter == "avi-mp4":
-        INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
-        avi2mp4(INPUT_File)
-
-    elif INPUT_Converter == "avi-mov":
-        INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
-        avi2mov(INPUT_File)
-
-    elif INPUT_Converter == "avi-flv":
-        INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
-        avi2flv(INPUT_File)
-
-    elif INPUT_Converter == "flv-mp4":
-        INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
-        flv2mp4(INPUT_File)
-
-    elif INPUT_Converter == "flv-mov":
-        INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
-        flv2mov(INPUT_File)
-
-    elif INPUT_Converter == "flv-avi":
-        INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
-        flv2avi(INPUT_File)
-
-
-# Audio
-
-    elif INPUT_Converter == "wav-mp3":
-        INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
-        wav2mp3(INPUT_File)
-
-    elif INPUT_Converter == "mp3-wav":
-        INPUT_File = input("Please provide the absolute path of the file you want to convert: ")
-        mp32wav(INPUT_File)
-
-# YouTube Downloader
-
-    elif INPUT_Converter == "yt-mp3":
-        INPUT_Link = input("Please provide a YouTube-Video Link you want to download: ")
-        yt2mp3(INPUT_Link)
-
-    elif INPUT_Converter == "yt-mp4":
-        INPUT_Link = input("Please provide a YouTube-Video Link you want to download: ")
-        yt2mp4(INPUT_Link)
-
-    elif INPUT_Converter == "yt-thumb":
-        INPUT_Link = input("Please provide a YouTube-Video Link you want to get the thumbnail from: ")
-        ytthumb(INPUT_Link)
-
-    else:
+    else:  # If the converter is not valid
         print(Fore.RED + "[ERROR] That's not a valid converter!" + Style.RESET_ALL)
 
-    print("\nDo you want to continue converting? (y/n)")
-    cont = input(">")
+# If there are no arguments, enter default / user-friendly mode
+if not len(sys.argv) > 1:
+    print(banner_console + banner_version + banner_converters + banner_usage)
+    while cont == "y": # While the user wants to continue converting...
+        print("Please enter a converter you want to use:")
+        input_converter = input(">").lower()
+        convert(input_converter)
+        print("\nDo you want to continue converting? (y/n)")
+        cont = input(">")
+
+# If there are arguments, enter pro /advanced mode
+else:
+    print(banner_console + banner_version)
+    argumentList = sys.argv[1:]
+
+    parser = argparse.ArgumentParser(description=None)          # Set up argparse to parse arguments
+
+    parser.add_argument("-f", "--file", help="Choose a file to convert", required=True)
+    # Add required file argument
+
+    # parser.add_argument("-l", "--list", help="Choose a list of files to convert")    maybe I'll add that later :D
+
+    parser.add_argument("-c", "--converter", help="Choose a conversion method", required=True)
+    # Add required converter argument
+    args = parser.parse_args()
+    a_convert(args.converter, args.file)  # convert the file
