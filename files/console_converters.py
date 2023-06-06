@@ -368,7 +368,7 @@ def yt2mp3(link):
 
 def yt2mp4(link):
     try:
-        video = YouTube(link).streams.filter(file_extension="mp4").first()
+        video = YouTube(link).streams.filter(file_extension="mp4").get_highest_resolution()
         video.download()
         print(Fore.GREEN + "[SUCCESS] Video successfully downloaded!" + Style.RESET_ALL)
     except exceptions.RegexMatchError:
