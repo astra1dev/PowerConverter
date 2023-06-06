@@ -34,3 +34,8 @@ V.1.5:
 - better converter list / menu
 - changed converter usage
 - added loop to keep program running until user ends it
+
+V.1.6:
+- YouTube downloader now always downloads videos in the best quality
+- added "advanced" mode (using command line arguments)
+- improved structure of main program
