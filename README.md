@@ -31,7 +31,3 @@ Download the latest version [here](https://www.python.org/downloads/)
 Then open Command Prompt, navigate to the PowerConverter directory, type `python -m pip install -r requirements.txt` and hit enter. 
 
 Finally, open Explorer, navigate to the PowerConverter directory, then double-click `console.py`. Now you can convert your files! 
-
-
-## Additional Info
-This is still a very early version, so expect more stuff to be added in the future.
