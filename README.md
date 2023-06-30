@@ -31,3 +31,7 @@ Double-click PowerConverter.py
 # Linux:
 python3 PowerConverter.py
 ```
+
+### Supported file types
+Currently, the following file types are supported: 
+png, jpg, ico, webp; mov, mp4, avi, flv; mp3, wav; yt-videos
