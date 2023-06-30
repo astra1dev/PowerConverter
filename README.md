@@ -13,21 +13,21 @@
 An image, audio & video converter supporting basic file types, written in python.
 
 
+## Installation
+Python 3 is required. Download the newest version [here](https://www.python.org/downloads/).
 
-## How to run
+Download the [latest release](https://github.com/kk-dev7/PowerConverter/releases/) of the converter and unpack it in the desired location.
 
-First, download the latest release of PowerConverter [here](https://github.com/kkb3st/PowerConverter/releases/) or clone the entire repository.
+```shell
+# Install the required packages:
+pip install -r requirements.txt
+```
 
-### Linux 
-Python should already be installed on your computer. 
+## Usage
+```shell
+# Windows:
+Double-click PowerConverter.py
 
-Use the console to navigate to the PowerConverter directory, then type `pip install -r requirements.txt` and hit enter. \
-Then type `python3 console.py` and hit enter. Now you can convert your files!
-
-### Windows
-You need Python installed on your computer. \
-Download the latest version [here](https://www.python.org/downloads/) 
-
-Then open Command Prompt, navigate to the PowerConverter directory, type `python -m pip install -r requirements.txt` and hit enter. 
-
-Finally, open Explorer, navigate to the PowerConverter directory, then double-click `console.py`. Now you can convert your files! 
+# Linux:
+python3 PowerConverter.py
+```
