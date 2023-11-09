@@ -12,26 +12,34 @@
 <p align="center">
 An image, audio & video converter supporting basic file types, written in python.
 
+## 📋 Requirements
+- [Python 3](https://python.org/downloads/)
+- [FFmpeg](https://ffmpeg.org/download.htm) for some audio converters
 
-## Installation
-Python 3 is required. Download the newest version [here](https://www.python.org/downloads/).
+## 🛠️ Installation
 
-Download the [latest release](https://github.com/kk-dev7/PowerConverter/releases/) of the converter and unpack it in the desired location.
+
+Download the latest release of PowerConverter [here](https://github.com/kk-dev7/PowerConverter/releases/) and unpack it in the desired location.
 
 ```shell
 # Install the required packages:
 pip install -r requirements.txt
 ```
 
-## Usage
+## 👉 Usage
 ```shell
 # Windows:
-Double-click PowerConverter.py
+Double-click console.py
 
 # Linux:
-python3 PowerConverter.py
+python3 console.py
 ```
 
-### Supported file types
+## 🤝 Supported file types
 Currently, the following file types are supported: 
-png, jpg, ico, webp; mov, mp4, avi, flv; mp3, wav; yt-videos
+| Image | Video | Audio | YouTube  |
+|-------|-------|-------|----------|
+| PNG   | MP4   | MP3   | YT-MP3   |
+| JPG   | AVI   | WAV   | YT-MP4   |
+| ICO   | MOV   |       | YT-THUMB |
+| WEBP  | FLV   |       |          |
