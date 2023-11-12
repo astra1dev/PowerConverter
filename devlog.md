@@ -1,41 +1,51 @@
 V.1.1: 
-- bugfix not downloading valid MP3 file from YouTube
-- now using pytube instead of YouTube_dl (deprecated)
-- added requirements.txt file
+- [🛠️] Bugfix: Not downloading valid MP3 file from YouTube
+- [➡️] Now using pytube instead of YouTube_dl (deprecated)
+- [✔️] Added requirements.txt file
 
 V.1.2:
-- new design, window size is now 1300x650
+- [➡️] New design, window size is now 1300x650
 
 V.1.3:
-- fixed bug with overlapping buttons when switching converters
-- added pdf button
+- [🛠️] Bugfix: Overlapping buttons when switching converters
+- [✔️] Added pdf button
 
 V.1.3.1:
-- added support for .ico files (only PNG2ICO)
+- [✔️] Added PNG2ICO to test ICO converter
 
-V.1.3.2: (First version publicly available)
-- added full support for .ico files
-- added full support for .webp files
+V.1.3.2:
+- [✔️] Added full support for .ico files
+- [✔️] Added full support for .webp files
 
-V.1.3.3: 
-- added missing converters (e.g. webp2ico)
-- improved banner + description
+V.1.3.3:
+- [✔️] Added missing converters for some files (e.g. webp2ico)
+- [➡️] Improved banner + description
 
 V.1.3.4:
-- added full support for avi & flv files
+- [✔️] Added full support for avi & flv files
 
 V.1.4:
-- added coloured font
-- added error catchers for all converters
-- added tags like SUCCESS and ERROR
+- [✔️] Added coloured font
+- [✔️] Added error catchers for all converters
+- [✔️] Added tags like SUCCESS and ERROR
 
 V.1.5:
-- added yt-thumb to download thumbnails of YouTube videos
-- better converter list / menu
-- changed converter usage
-- added loop to keep program running until user ends it
+- [✔️] Added yt-thumb to download thumbnails of YouTube videos
+- [➡️] Better converter list / menu
+- [➡️] Changed converter usage
+- [✔️] Added loop to keep program running until user ends it
 
 V.1.6:
-- YouTube downloader now always downloads videos in the best quality
-- added "advanced" mode (using command line arguments)
-- improved structure of main program
+- [➡️] YouTube downloader now always downloads videos in the best quality
+- [✔️] Added "advanced" mode (using command line arguments)
+- [➡️] Improved structure of main program
+
+V.1.6.1:
+- [❗] Massively reduced folder size by removing unnecessary FFmpeg executables [80MB -> 4KB]
+
+
+V.1.6.2:
+- [➡️] Improved code readability and maintainability
+- [✔️] Added screen clear after each conversion process to avoid confusion
+- [✔️] Added centralized error handler inside console_converters.py
+- [➡️] Renamed files to 'main.py' and 'converters.py'
