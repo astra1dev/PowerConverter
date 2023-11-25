@@ -49,3 +49,9 @@ V.1.6.2:
 - [✔️] Added screen clear after each conversion process to avoid confusion
 - [✔️] Added centralized error handler inside console_converters.py
 - [➡️] Renamed files to 'main.py' and 'converters.py'
+
+V.1.6.3:
+- [➡️] Now using `with open` to convert image files
+- [✔️] Added config.json and config.md to explain the config options
+- [✔️] Added default YouTube download directory in config
+- [✔️] Now supporting conversion of multiple files / videos
