@@ -33,7 +33,6 @@ banner_usage = Fore.BLUE + "\nInput Format: [FileType1]-[FileType2]  ---> exampl
 # -------------------- VARIABLES -------------------- #
 user_continue = "y"
 
-
 converters = {
     # Image
     "png-jpg": png2jpg, "png-ico": png2ico, "png-webp": png2webp,
@@ -60,24 +59,31 @@ yt_converters = {
 def convert(c):
     if c in converters:
         f = input("\n[-] Please provide the path of the file you want to convert: ")
+        f = [f]
         converters[c](f)
     elif c in yt_converters:
-        youtube(yt_converters[c])
+        f = input("\n[-] Please provide a YouTube-Video Link you want to download: ")
+        f = [f]
+        yt_converters[c](f)
     else:
-        print(Fore.RED + "[ERROR] That's not a valid converter!" + Style.RESET_ALL)
+        print(Fore.RED + "[ERROR] Please provide a valid converter!" + Style.RESET_ALL)
 
 
-def advanced_convert(c, f):  # c = converter, f = file
+def advanced_convert(c, f):  # c = converter, f = files
+    if not f:
+        print(Fore.RED + "[ERROR] Please provide either a single file or a list of files." + Style.RESET_ALL)
+
+    # if the user provided a single file, make a list out of it
+    if not isinstance(f, list):
+        f = [f]
+
+    # check the given converter and if valid, convert the file
     if c in converters:
         converters[c](f)
     elif c in yt_converters:
-        youtube(yt_converters[c])
+        yt_converters[c](f)
     else:
-        print(Fore.RED + "[ERROR] That's not a valid converter!" + Style.RESET_ALL)
-
-
-def youtube(c):
-    c(input("\n[-] Please provide a YouTube-Video Link you want to download: "))
+        print(Fore.RED + "[ERROR] Please provide a valid converter!" + Style.RESET_ALL)
 
 
 def clear_screen():
@@ -102,9 +108,20 @@ else:
 
     parser = argparse.ArgumentParser(description=None)
 
-    parser.add_argument("-f", "--file", help="Choose a file to convert", required=True)
-    parser.add_argument("-c", "--converter", help="Choose a conversion method", required=True)
-    # parser.add_argument("-l", "--list", help="Choose a list of files to convert")    maybe I'll add that later :D
+    parser.add_argument("-f", "--file", help="Choose a file to convert")
+    parser.add_argument("-c", "--converter", help="Choose a conversion method")
+    parser.add_argument("-l", "--list", help="Choose a list of files to convert (semicolon-separated)")
 
     args = parser.parse_args()
-    advanced_convert(args.converter, args.file)
+
+    if args.file and args.list:
+        print(Fore.RED + "[ERROR] Please provide either a single file or a list of files, not both." + Style.RESET_ALL)
+
+    if args.file:
+        # if a single file is given, pass it to convert function
+        advanced_convert(args.converter, args.file)
+    elif args.list:
+        # if the argument file list is given, pass the list to convert function
+        advanced_convert(args.converter, [f.strip() for f in args.list.split(';')])
+    else:
+        print(Fore.RED + "[ERROR] Please specify a file or a list of files to convert!")
