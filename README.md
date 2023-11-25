@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-An image, audio & video converter supporting basic file types, written in python.
+A simple file converter written in python.
 
 ## 📋 Requirements
 - [Python 3](https://python.org/downloads/)
