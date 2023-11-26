@@ -27,12 +27,13 @@ pip install -r requirements.txt
 ```
 
 ## 👉 Usage
+- User-friendly mode
 ```shell
-# Windows:
-Double-click console.py
-
-# Linux:
-python3 console.py
+python3 main.py
+```
+- Advanced mode
+```shell
+python3 main.py [-h] [-c converter] [-f file] [-l list]
 ```
 
 ## 🤝 Supported file types
