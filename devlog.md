@@ -55,3 +55,13 @@ V.1.6.3:
 - [✔️] Added config.json and config.md to explain the config options
 - [✔️] Added default YouTube download directory in config
 - [✔️] Now supporting conversion of multiple files / videos
+
+V.1.6.4:
+- [❌] Removed youtube downloaders because there are way better options to download yt videos, such as 
+[this](https://github.com/Tyrrrz/YoutubeDownloader)
+- [✔️] Added progress bar
+- [➡️] Now using os.path.join for handling file paths to enhance platform independence
+- [➡️] code changes, no change for user:
+  - Added `if name == main`
+  - Replaced individual functions like ico2png, flv2avi, etc., with unified anything_to_x functions.
+
