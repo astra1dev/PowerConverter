@@ -2,320 +2,135 @@ from PIL import Image
 import os
 import subprocess
 from pydub import AudioSegment
-from pytube import YouTube, exceptions
-import requests
 from colorama import Fore, Style  # , Back
-# from time import sleep
-import json
+from tqdm import tqdm
 
 
-# ---------- SOME EXPLANATION ---------- #
+# -------------------- Error Handler -------------------- #
+
 # @error_handler is the shorthand way of saying: some_function = handle_errors(some_function)
 # when some_function is called, it is actually calling the "wrapper" function returned by error_handler
-# the wrapper function allows you to modify or extend the behavior of the original function, without directly
-# modifying its code
-
-def get_youtube_directory():
-    with (open("config.json", "r") as config):
-        yt_dir = json.load(config).get("youtube_download_directory", False)  # default to true if key not found
-        if yt_dir is False:
-            return None
-        return yt_dir
-
-
-# Error Handler
+# the wrapper allows you to modify or extend the behavior of the original function, without modifying its code
 def error_handler(func):
     def wrapper(*args, **kwargs):
         try:
             func(*args, **kwargs)
-            print(Fore.GREEN + "[SUCCESS] File successfully converted!" + Style.RESET_ALL)
+            print(Fore.GREEN + "[SUCCESS] File(s) successfully converted!" + Style.RESET_ALL)
         except FileNotFoundError:
-            print(Fore.RED + "[ERROR] The File was not found! Make sure you put in the path correctly." +
+            print(Fore.RED + "[ERROR] File(s) not found! Make sure you put in the path correctly." +
                   Style.RESET_ALL)
+        except FileExistsError:
+            print(Fore.RED + "[INFO] The file is already in the desired format!" + Style.RESET_ALL)
         except OSError:
-            print(Fore.RED + "[ERROR] The file could not be converted!" + Style.RESET_ALL)
+            print(Fore.RED + "[ERROR] The file(s) could not be converted!" + Style.RESET_ALL)
 
     return wrapper
 
 
-def youtube_error_handler(func):
-    def wrapper(*args, **kwargs):
-        try:
-            func(*args, **kwargs)
-            print(Fore.GREEN + "[SUCCESS] Video successfully downloaded!" + Style.RESET_ALL)
-        except exceptions.RegexMatchError:
-            print(Fore.RED + "[ERROR] The video URL you entered is not valid!" + Style.RESET_ALL)
-        except exceptions.LiveStreamError:
-            print(Fore.RED + "[ERROR] You entered a livestream link, not a video link!" + Style.RESET_ALL)
-        except exceptions.VideoPrivate:
-            print(Fore.RED + "[ERROR] The video you entered is private!" + Style.RESET_ALL)
-        except exceptions.VideoRegionBlocked:
-            print(Fore.RED + "[ERROR] The video you entered is blocked in your region!" + Style.RESET_ALL)
-        except exceptions.AgeRestrictedError:
-            print(Fore.RED + "[ERROR] The video you entered is age restricted!" + Style.RESET_ALL)
-
-    return wrapper
+"""
+All converter methods take a list of files to convert as an argument.
+Then they loop through every file in the list, convert it and save it under the same file name as the original file.
+"""
 
 
-# All the converters take a list of files to convert as an argument.
-# Then they loop through every file in the list, convert it and save it under the same file name as the original file.
+# -------------------- Image Conversion -------------------- #
 
-# Image Converters
+# JPG does not support transparency. RGBA means Red, Green, Blue, Alpha. Alpha = Transparency
+# So we need to discard the Alpha channel with Image.convert which converts RGBA to RGB, so we can save as JPG.
+@error_handler
+def anything_to_jpg(files):
+    for file in tqdm(files, desc="Converting to JPG", unit="file", colour="#00ff00"):
+        out_file, ext = os.path.splitext(file)
+        out_file += ".jpg"
+        out_file = os.path.join(out_file)
+        # if the user didn't already give a jpg file
+        with Image.open(file) as im:
+            # if the image given has a transparent background, discard it
+            if im.mode in ("RGBA", "P"):
+                im = im.convert("RGB")
+                im.save(out_file, format="JPEG")
 
 
 @error_handler
-def png2jpg(files):
-    for file in files:
-        with open(file, "rb") as f:
-            image = Image.open(f)
-            rgb_image = image.convert('RGB')
-            jpg_file = file[:-4] + ".jpg"
-            rgb_image.save(jpg_file)
+def anything_to_png(files):
+    for file in tqdm(files, desc="Converting to PNG", unit="file", colour="#00ff00"):
+        out_file, ext = os.path.splitext(file)
+        out_file += ".png"
+        out_file = os.path.join(out_file)
+        with Image.open(file) as im:
+            im.save(out_file, format="PNG")
 
 
 @error_handler
-def jpg2png(files):
-    for file in files:
-        with open(file, "rb") as f:
-            image = Image.open(f)
-            png_file = file[:-4] + ".png"
-            image.save(png_file, format="PNG")
+def anything_to_ico(files):
+    for file in tqdm(files, desc="Converting to ICO", unit="file", colour="#00ff00"):
+        out_file, ext = os.path.splitext(file)
+        out_file += ".ico"
+        out_file = os.path.join(out_file)
+        with Image.open(file) as im:
+            im.save(out_file, format="ICO")
 
 
 @error_handler
-def png2ico(files):
-    for file in files:
-        with open(file, "rb") as f:
-            image = Image.open(f)
-            ico_file = file[:-4] + ".ico"
-            image.save(ico_file, format="ICO")
+def anything_to_webp(files):
+    for file in tqdm(files, desc="Converting to WEBP", unit="file", colour="#00ff00"):
+        out_file, ext = os.path.splitext(file)
+        out_file += ".webp"
+        out_file = os.path.join(out_file)
+        with Image.open(file) as im:
+            im.save(out_file, format="WEBP")
+
+
+# -------------------- Video Conversion (FFmpeg required) -------------------- #
+@error_handler
+def anything_to_mp4(files):
+    for file in tqdm(files, desc="Converting to MP4", unit="file", colour="#00ff00"):
+        out_file, ext = os.path.splitext(file)
+        out_file += ".mp4"
+        out_file = os.path.join(out_file)
+        # call ffmpeg to convert the file, and suppress any output so the user isn't overwhelmed with text
+        subprocess.call(['ffmpeg', '-i', file, out_file], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 
 @error_handler
-def ico2png(files):
-    for file in files:
-        with open(file, "rb") as f:
-            image = Image.open(f)
-            png_file = file[:-4] + ".png"
-            image.save(png_file, format="PNG")
+def anything_to_mov(files):
+    for file in tqdm(files, desc="Converting to MOV", unit="file", colour="#00ff00"):
+        out_file, ext = os.path.splitext(file)
+        out_file += ".mov"
+        out_file = os.path.join(out_file)
+        subprocess.call(['ffmpeg', '-i', file, out_file], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 
 @error_handler
-def jpg2ico(files):
-    for file in files:
-        with open(file, "rb") as f:
-            image = Image.open(f)
-            ico_file = file[:-4] + ".ico"
-            image.save(ico_file, format="ICO")
+def anything_to_avi(files):
+    for file in tqdm(files, desc="Converting to AVI", unit="file", colour="#00ff00"):
+        out_file, ext = os.path.splitext(file)
+        out_file += ".avi"
+        out_file = os.path.join(out_file)
+        subprocess.call(['ffmpeg', '-i', file, out_file], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 
 @error_handler
-def ico2jpg(files):
-    for file in files:
-        with open(file, "rb") as f:
-            image = Image.open(f)
-            rgb_image = image.convert('RGB')
-            jpg_file = file[:-4] + ".jpg"
-            rgb_image.save(jpg_file, format="JPG")
+def anything_to_flv(files):
+    for file in tqdm(files, desc="Converting to FLV", unit="file", colour="#00ff00"):
+        out_file, ext = os.path.splitext(file)
+        out_file += ".flv"
+        out_file = os.path.join(out_file)
+        subprocess.call(['ffmpeg', '-i', file, out_file], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 
+# -------------------- Audio Conversion -------------------- #
 @error_handler
-def png2webp(files):
-    for file in files:
-        with open(file, "rb") as f:
-            image = Image.open(f)
-            webp_file = file[:-4] + ".webp"
-            image.save(webp_file, format="WEBP")
-
-
-@error_handler
-def webp2png(files):
-    for file in files:
-        with open(file, "rb") as f:
-            image = Image.open(f)
-            png_file = file[:-5] + ".png"
-            image.save(png_file, format="PNG")
-
-
-@error_handler
-def jpg2webp(files):
-    for file in files:
-        with open(file, "rb") as f:
-            image = Image.open(f)
-            webp_file = file[:-4] + ".webp"
-            image.save(webp_file, format="WEBP")
-
-
-@error_handler
-def webp2jpg(files):
-    for file in files:
-        with open(file, "rb") as f:
-            image = Image.open(f)
-            rgb_image = image.convert('RGB')
-            jpg_file = file[:-4] + ".jpg"
-            rgb_image.save(jpg_file, format="JPG")
-
-
-@error_handler
-def ico2webp(files):
-    for file in files:
-        with open(file, "rb") as f:
-            image = Image.open(f)
-            webp_file = file[:-4] + ".webp"
-            image.save(webp_file, format="WEBP")
-
-
-@error_handler
-def webp2ico(files):
-    for file in files:
-        with open(file, "rb") as f:
-            image = Image.open(f)
-            ico_file = file[:-5] + ".ico"
-            image.save(ico_file, format="ICO")
-
-
-# Video Converters
-# FFmpeg is required for those!
-
-
-@error_handler
-def mov2mp4(files):
-    for file in files:
-        mp4_file = file[:-4] + ".mp4"
-        mp4_file = os.path.join(mp4_file)
-        subprocess.call(['ffmpeg', '-i', file, mp4_file])
-
-
-@error_handler
-def mp42mov(files):
-    for file in files:
-        mov_file = file[:-4] + ".mov"
-        mov_file = os.path.join(mov_file)
-        subprocess.call(['ffmpeg', '-i', file, mov_file])
-
-
-@error_handler
-def mov2avi(files):
-    for file in files:
-        avi_file = file[:-4] + ".avi"
-        avi_file = os.path.join(avi_file)
-        subprocess.call(['ffmpeg', '-i', file, avi_file])
-
-
-@error_handler
-def avi2mov(files):
-    for file in files:
-        mov_file = file[:-4] + ".avi"
-        mov_file = os.path.join(mov_file)
-        subprocess.call(['ffmpeg', '-i', file, mov_file])
-
-
-@error_handler
-def mp42avi(files):
-    for file in files:
-        avi_file = file[:-4] + ".avi"
-        avi_file = os.path.join(avi_file)
-        subprocess.call(['ffmpeg', '-i', file, avi_file])
-
-
-@error_handler
-def avi2mp4(files):
-    for file in files:
-        mp4_file = file[:-4] + ".mp4"
-        mp4_file = os.path.join(mp4_file)
-        subprocess.call(['ffmpeg', '-i', file, mp4_file])
-
-
-@error_handler
-def mov2flv(files):
-    for file in files:
-        flv_file = file[:-4] + ".avi"
-        flv_file = os.path.join(flv_file)
-        subprocess.call(['ffmpeg', '-i', file, flv_file])
-
-
-@error_handler
-def flv2mov(files):
-    for file in files:
-        mov_file = file[:-4] + ".avi"
-        mov_file = os.path.join(mov_file)
-        subprocess.call(['ffmpeg', '-i', file, mov_file])
-
-
-@error_handler
-def mp42flv(files):
-    for file in files:
-        flv_file = file[:-4] + ".avi"
-        flv_file = os.path.join(flv_file)
-        subprocess.call(['ffmpeg', '-i', file, flv_file])
-
-
-@error_handler
-def flv2mp4(files):
-    for file in files:
-        mp4_file = file[:-4] + ".mp4"
-        mp4_file = os.path.join(mp4_file)
-        subprocess.call(['ffmpeg', '-i', file, mp4_file])
-
-
-@error_handler
-def avi2flv(files):
-    for file in files:
-        flv_file = file[:-4] + ".avi"
-        flv_file = os.path.join(flv_file)
-        subprocess.call(['ffmpeg', '-i', file, flv_file])
-
-
-@error_handler
-def flv2avi(files):
-    for file in files:
-        avi_file = file[:-4] + ".avi"
-        avi_file = os.path.join(avi_file)
-        subprocess.call(['ffmpeg', '-i', file, avi_file])
-
-# Audio Converters
-
-
-@error_handler
-def wav2mp3(files):
-    for file in files:
+def wav_to_mp3(files):
+    for file in tqdm(files, desc="Converting to MP3", unit="file", colour="#00ff00"):
         sound = AudioSegment.from_wav(file)
         file = file[:-4] + ".mp3"
         sound.export(file, format="mp3")
 
 
 @error_handler
-def mp32wav(files):
-    for file in files:
+def mp3_to_wav(files):
+    for file in tqdm(files, desc="Converting to WAV", unit="file", colour="#00ff00"):
         sound = AudioSegment.from_mp3(file)
         file = file[:-4] + ".wav"
         sound.export(file, format="wav")
-
-# YouTube Downloaders
-# FFmpeg is required to convert downloaded file to MP3 if wanted
-
-
-@youtube_error_handler
-def yt2mp3(links):
-    for link in links:
-        # Download file as mp4, then convert it to mp3 using FFmpeg, then remove the mp4 file
-        video_file = YouTube(link).streams.filter(only_audio=True).first().download(output_path=get_youtube_directory())
-        mp3_file = video_file[:-4] + ".mp3"
-        subprocess.call(['ffmpeg', '-i', video_file, mp3_file], stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
-        os.remove(video_file)
-
-
-@youtube_error_handler
-def yt2mp4(links):
-    for link in links:
-        YouTube(link).streams.filter(file_extension="mp4").get_highest_resolution().download(
-            output_path=get_youtube_directory())
-
-
-@youtube_error_handler
-def ytthumb(links):
-    for link in links:
-        # Get the Thumbnail URL and download it
-        r = requests.get(YouTube(link).thumbnail_url).content
-        with open('thumbnail.png', 'wb') as f:
-            f.write(r)
