@@ -19,7 +19,7 @@ A simple file converter written in python.
 ## 🛠️ Installation
 
 
-Download the latest release of PowerConverter [here](https://github.com/kk-dev7/PowerConverter/releases/) and unpack it in the desired location.
+Download the latest release of PowerConverter [here](https://github.com/astra1dev/PowerConverter/releases/) and unpack it in the desired location.
 
 ```shell
 # Install the required packages:
@@ -38,9 +38,9 @@ python3 main.py [-h] [-c converter] [-f file] [-l list]
 
 ## 🤝 Supported file types
 Currently, the following file types are supported: 
-| Image | Video | Audio | YouTube  |
-|-------|-------|-------|----------|
-| PNG   | MP4   | MP3   | YT-MP3   |
-| JPG   | AVI   | WAV   | YT-MP4   |
-| ICO   | MOV   |       | YT-THUMB |
-| WEBP  | FLV   |       |          |
+| Image | Video | Audio |
+|-------|-------|-------|
+| PNG   | MP4   | MP3   |
+| JPG   | AVI   | WAV   |
+| ICO   | MOV   |       |
+| WEBP  | FLV   |       |
