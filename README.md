@@ -37,7 +37,7 @@ python3 main.py [-h] [-c converter] [-f file] [-l list]
 ```
 
 ## 🤝 Supported file types
-Currently, the following file types are supported: 
+Almost any file can be used as an input format. The following file types are supported as output formats:
 | Image | Video | Audio |
 |-------|-------|-------|
 | PNG   | MP4   | MP3   |
