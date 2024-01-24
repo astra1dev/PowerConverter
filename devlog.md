@@ -65,3 +65,14 @@ V.1.6.4:
   - Added `if name == main`
   - Replaced individual functions like ico2png, flv2avi, etc., with unified anything_to_x functions.
 
+v1.6.5:
+- [✔️] Added formats:
+  - DDS
+  - TGA
+  - TIFF
+  - XBM
+- [➡️] Split `converters.py` into `conv_image`, `conv_video` and `conv_audio` 
+- [🛠️] Fixed some redundant code
+- [✔️] Added "Ctrl + C" handler 
+- [✔️] Added PATH_TO_FFMPEG in config to allow custom ffmpeg locations. When no path is given, 
+the program assumes ffmpeg is added to the PATH environment variable.
