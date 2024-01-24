@@ -1,7 +1,9 @@
 #!/usr/bin/python
 
 # -------------------- IMPORTS -------------------- #
-from files.converters import *
+from files.conv_image import *
+from files.conv_video import *
+from files.conv_audio import *
 from colorama import Fore, Style  # , Back
 import sys
 import argparse
@@ -16,27 +18,29 @@ banner_console = Fore.GREEN + r"""
 | |  | (_) \ V  V /  __/ |  | |___| (_) | | | \ V /  __/ |  | ||  __/ |    
 |_|   \___/ \_/\_/ \___|_|   \_____\___/|_| |_|\_/ \___|_|   \__\___|_|    
 
-V.1.6.4                                 created by kk, github.com/kk-dev7
+V.1.6.5                           created by Astral, github.com/astra1dev
 """ + Style.RESET_ALL
 
 banner_converters = """
 Supported File Types:
 
-Image:      .png     .jpg     .ico     .webp
-Video:      .mp4     .avi     .mov     .flv
-Audio:      .mp3     .wav   
+Image:       PNG     JPG     ICO     WEBP 
+             DDS     TGA     TIFF    XBM
+Video:       MP4     AVI     MOV     FLV
+Audio:       MP3     WAV 
 """
 
-banner_usage = Fore.BLUE + "\nInput Format: to-[DesiredOutputFormat]  ---> example: to-mp4\n" + Style.RESET_ALL
+banner_usage = Fore.BLUE + "\nInput Format: to-[DesiredFormat]  ---> example: to-mp4\n" + Style.RESET_ALL
 
 # -------------------- VARIABLES -------------------- #
 
 converters = {
     # Image
-    "to-jpg": anything_to_jpg, "to-ico": anything_to_ico, "to-webp": anything_to_webp, "to-png": anything_to_png,
+    "to-jpg": to_jpg, "to-ico": to_ico, "to-webp": to_webp, "to-png": to_png,
+    "to-dds": to_dds, "to-tga": to_tga, "to-tiff": to_tiff, "to-xbm": to_xbm,
 
     # Video
-    "to-mov": anything_to_mov, "to-mp4": anything_to_mp4, "to-avi": anything_to_avi, "to-flv": anything_to_flv,
+    "to-mov": to_mov, "to-mp4": to_mp4, "to-avi": to_avi, "to-flv": to_flv,
 
     # Audio
     "wav-mp3": wav_to_mp3, "mp3-wav": mp3_to_wav,
@@ -113,4 +117,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        # If user uses "Ctrl + C", exit.
+        sys.exit(0)
