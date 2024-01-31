@@ -1,4 +1,5 @@
 #!/usr/bin/python
+import colorama
 
 # -------------------- IMPORTS -------------------- #
 from files.conv_image import *
@@ -117,6 +118,8 @@ def main():
 
 
 if __name__ == "__main__":
+    colorama.init()
+    colorama.just_fix_windows_console()
     try:
         main()
     except KeyboardInterrupt:
