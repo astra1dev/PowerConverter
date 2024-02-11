@@ -3,17 +3,23 @@
 </p>
 
 <p align="center">
-  <a href="https://python.org">
-    <img src="https://img.shields.io/badge/Made%20with-Python-1f425f.svg?style=plastic&logo=python&color=3c7cae&labelColor=ffd841&logoColor=3c7cae">
-  </a>
   
   <a href="https://www.gnu.org/licenses/gpl-3.0.html">
     <img src="https://img.shields.io/badge/license-GPL-brightgreen.svg?style=plastic&logo=GNU&label=License">
   </a>
   
   <a href="https://github.com/astra1dev/PowerConverter/actions/workflows/python-app.yml">
-    <img src="https://github.com/astra1dev/PowerConverter/actions/workflows/python-app.yml/badge.svg?event=push&style=plastic">
+    <img src="https://github.com/astra1dev/PowerConverter/actions/workflows/python-app.yml/badge.svg?event=push">
   </a>
+
+  <a href="../../releases/latest">
+    <img src="https://img.shields.io/github/release/astra1dev/PowerConverter.svg?label=version&style=plastic">
+  </a>
+
+  <a href="../../releases">
+    <img src="https://img.shields.io/github/downloads/astra1dev/PowerConverter/total.svg?style=plastic">
+  </a>
+  
 </p>
 
 <p align="center">
