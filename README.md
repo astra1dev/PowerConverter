@@ -11,8 +11,8 @@
     <img src="https://img.shields.io/badge/license-GPL-brightgreen.svg?style=plastic&logo=GNU&label=License">
   </a>
   
-  <a href="https://github.com/astra1dev/PowerConverter/releases/latest">
-    <img src="https://img.shields.io/badge/version-1.6.4-blue.svg?style=plastic&logo=GitHub&color=ff5500&label=Version">
+  <a href="https://github.com/astra1dev/PowerConverter/actions/workflows/python-app.yml">
+    <img src="https://github.com/astra1dev/PowerConverter/actions/workflows/python-app.yml/badge.svg?event=push&style=plastic">
   </a>
 </p>
 
