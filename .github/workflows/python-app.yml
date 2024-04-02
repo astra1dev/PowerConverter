@@ -37,4 +37,5 @@ jobs:
     - name: Test with pytest
       run: |
         pip install ffmpeg-python
+        pip install ffmpeg
         pytest src/main.py --doctest-modules --junitxml=junit/test-results.xml
