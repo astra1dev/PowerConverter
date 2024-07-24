@@ -46,7 +46,7 @@ python3 main.py
 ```
 - Advanced mode
 ```shell
-python3 main.py [-h] [-c converter] [-f file(s)]
+python3 main.py [-h] [-c conversion method] [-f files to convert]
 ```
 
 ## 🤝 Supported file types
@@ -57,3 +57,7 @@ Almost any file can be used as an input format. The following file types are sup
 | JPG   | AVI   | WAV   |
 | ICO   | MOV   |       |
 | WEBP  | FLV   |       |
+| DDS   |       |       |
+| TGA   |       |       |
+| TIFF  |       |       |
+| XBM   |       |       |
