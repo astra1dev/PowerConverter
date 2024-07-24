@@ -2,13 +2,13 @@
 import colorama
 
 # -------------------- IMPORTS -------------------- #
-from files.conv_image import *
-from files.conv_video import *
-from files.conv_audio import *
+from src.conv_image import *
+from src.conv_video import *
+from src.conv_audio import *
 from colorama import Fore, Style  # , Back
 import sys
 import argparse
-
+import pathlib
 
 # -------------------- BANNERS -------------------- #
 banner_console = Fore.GREEN + r"""                                                         
@@ -19,7 +19,7 @@ banner_console = Fore.GREEN + r"""
 | |  | (_) \ V  V /  __/ |  | |___| (_) | | | \ V /  __/ |  | ||  __/ |    
 |_|   \___/ \_/\_/ \___|_|   \_____\___/|_| |_|\_/ \___|_|   \__\___|_|    
 
-V.1.6.5                           created by Astral, github.com/astra1dev
+v1.6.5                           created by Astral, github.com/astra1dev
 """ + Style.RESET_ALL
 
 banner_converters = """
@@ -97,24 +97,18 @@ def main():
 
         parser = argparse.ArgumentParser(description=None)
 
-        parser.add_argument("-f", "--file", help="Choose a file to convert")
-        parser.add_argument("-c", "--converter", help="Choose a conversion method")
-        parser.add_argument("-l", "--list", help="Choose a list of files to convert (semicolon-separated)")
+        parser.add_argument("-f", "--file", help="path of file(s) to convert",
+                            dest="file_list", type=pathlib.Path, nargs="+")
+        # nargs="+" allows for input of one or more files
+        parser.add_argument("-c", "--converter", help="conversion method")
 
         args = parser.parse_args()
 
-        if args.file and args.list:
-            print(Fore.RED + "[ERROR] Please provide either a single file or a list of files, not both." +
-                  Style.RESET_ALL)
-
-        if args.file:
-            # if a single file is given, pass it to convert function
-            advanced_convert(args.converter, args.file)
-        elif args.list:
-            # if the argument file list is given, pass the list to convert function
-            advanced_convert(args.converter, [f.strip() for f in args.list.split(';')])
+        if args.file_list:
+            # if files are given, pass them to convert function
+            advanced_convert(args.converter, args.file_list)
         else:
-            print(Fore.RED + "[ERROR] Please specify a file or a list of files to convert!")
+            print(Fore.RED + "[ERROR] Please specify file(s) to convert!" + Style.RESET_ALL)
 
 
 if __name__ == "__main__":

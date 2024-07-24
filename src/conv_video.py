@@ -1,8 +1,8 @@
 import os
 import subprocess
 from tqdm import tqdm
-from files.error_handler import error_handler
-from files.config_handler import path_to_ffmpeg
+from src.error_handler import error_handler
+from src.config_handler import path_to_ffmpeg
 
 """
 All converter methods take a list of files to convert as an argument.

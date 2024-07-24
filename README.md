@@ -40,7 +40,7 @@ python3 main.py
 ```
 - Advanced mode
 ```shell
-python3 main.py [-h] [-c converter] [-f file] [-l list]
+python3 main.py [-h] [-c converter] [-f file(s)]
 ```
 
 ## 🤝 Supported file types

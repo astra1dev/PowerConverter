@@ -1,7 +1,7 @@
 from PIL import Image
 import os
 from tqdm import tqdm
-from files.error_handler import error_handler
+from src.error_handler import error_handler
 
 """
 All converter methods take a list of files to convert as an argument.
