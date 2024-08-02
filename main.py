@@ -55,12 +55,12 @@ def convert(c):
         f = [f.strip() for f in f.split(';')]
         converters[c](f)
     else:
-        print(Fore.RED + "[ERROR] Please provide a valid converter!" + Style.RESET_ALL)
+        print(Fore.RED + "[!] Error: Please provide a valid converter!" + Style.RESET_ALL)
 
 
 def advanced_convert(c, f):  # c = converter, f = files
     if not f:
-        print(Fore.RED + "[ERROR] Please provide either a single file or a list of files." + Style.RESET_ALL)
+        print(Fore.RED + "[!] Error: Please provide either a single file or a list of files." + Style.RESET_ALL)
         return
 
     # if the user provided a single file, make a list out of it
@@ -71,7 +71,7 @@ def advanced_convert(c, f):  # c = converter, f = files
     if c in converters:
         converters[c](f)
     else:
-        print(Fore.RED + "[ERROR] Please provide a valid converter!" + Style.RESET_ALL)
+        print(Fore.RED + "[!] Error: Please provide a valid converter!" + Style.RESET_ALL)
 
 
 def clear_screen():
@@ -108,7 +108,7 @@ def main():
             # if files are given, pass them to convert function
             advanced_convert(args.converter, args.file_list)
         else:
-            print(Fore.RED + "[ERROR] Please specify file(s) to convert!" + Style.RESET_ALL)
+            print(Fore.RED + "[!] Error: Please specify file(s) to convert!" + Style.RESET_ALL)
 
 
 if __name__ == "__main__":
