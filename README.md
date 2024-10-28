@@ -31,13 +31,9 @@ A simple file converter written in python.
 
 ## 🛠️ Installation
 
-
-Download the latest release of PowerConverter [here](https://github.com/astra1dev/PowerConverter/releases/) and unpack it in the desired location.
-
-```shell
-# Install the required packages:
-pip install -r requirements.txt
-```
+- Download the necessary files with `git clone https://github.com/astra1dev/PowerConverter.git`
+- Install the required packages with `python -m pip install -r requirements.txt` 
+- Run the script with `python3 main.py` 
 
 ## 👉 Usage
 - User-friendly mode
